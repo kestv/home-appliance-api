@@ -1,4 +1,6 @@
+using Domain.Temperature;
 using Infrastructure;
+using Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<HomeApplianceContext>();
 
+builder.Services.AddScoped<ITemperatureMeasurementRepository, TemperatureMeasurementRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -19,7 +23,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

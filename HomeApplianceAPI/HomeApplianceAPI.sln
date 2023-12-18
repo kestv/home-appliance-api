@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.33927.210
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeApplianceAPI", "HomeApplianceAPI.csproj", "{4D6DE52C-B56D-4742-94DF-DB26A33173CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeApplianceAPI", "HomeApplianceAPI.csproj", "{4D6DE52C-B56D-4742-94DF-DB26A33173CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "..\Domain\Domain.csproj", "{4A6A6497-8013-4A74-912A-8F95C83ED0BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "..\Domain\Domain.csproj", "{4A6A6497-8013-4A74-912A-8F95C83ED0BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "..\Infrastructure\Infrastructure.csproj", "{A70B99EF-DC0F-4974-87E3-180312062D98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "..\Infrastructure\Infrastructure.csproj", "{A70B99EF-DC0F-4974-87E3-180312062D98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "..\Application\Application.csproj", "{06662CF0-FE39-4A12-8C61-35B930F4E451}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\Tests\Tests.csproj", "{251A3D02-8908-426C-8D09-E371176A7B28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "..\Tests\Tests.csproj", "{251A3D02-8908-426C-8D09-E371176A7B28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{A70B99EF-DC0F-4974-87E3-180312062D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A70B99EF-DC0F-4974-87E3-180312062D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A70B99EF-DC0F-4974-87E3-180312062D98}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06662CF0-FE39-4A12-8C61-35B930F4E451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06662CF0-FE39-4A12-8C61-35B930F4E451}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06662CF0-FE39-4A12-8C61-35B930F4E451}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06662CF0-FE39-4A12-8C61-35B930F4E451}.Release|Any CPU.Build.0 = Release|Any CPU
 		{251A3D02-8908-426C-8D09-E371176A7B28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{251A3D02-8908-426C-8D09-E371176A7B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{251A3D02-8908-426C-8D09-E371176A7B28}.Release|Any CPU.ActiveCfg = Release|Any CPU

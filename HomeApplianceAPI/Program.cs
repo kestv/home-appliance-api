@@ -1,6 +1,11 @@
+using Application.Mapper;
+using Application.Services;
+using AutoMapper;
 using Domain.Temperature;
 using Infrastructure;
 using Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +15,20 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<HomeApplianceContext>();
+builder.Services.AddDbContext<HomeApplianceContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
+});
 
-builder.Services.AddScoped<ITemperatureMeasurementRepository, TemperatureMeasurementRepository>();
+builder.Services.AddScoped<IMeasurementService, MeasurementService>();
+
+builder.Services.AddTransient<IMeasurementRepository, MeasurementRepository>();
+
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MappingProfile());
+});
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 

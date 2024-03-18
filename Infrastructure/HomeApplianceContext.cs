@@ -1,15 +1,15 @@
-﻿using Domain.Models;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
 {
     public class HomeApplianceContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public HomeApplianceContext(DbContextOptions<HomeApplianceContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=home_appliance;Trusted_Connection=True;");
+
         }
 
-        public virtual DbSet<TemperatureMeasurement> TemperatureMeasurements { get; set; }
+        public virtual DbSet<TemperatureMeasurement> TemperatureMeasurements { get; set; } = default!;
     }
 }

@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+﻿using Domain.Entities;
 using Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Temperature
 {
-    public interface ITemperatureMeasurementRepository : IRepositoryBase<TemperatureMeasurement>
+    public interface IMeasurementRepository : IRepositoryBase<TemperatureMeasurement>
     {
+        Task<TemperatureMeasurement> GetLastMeasurementAsync();
     }
 }

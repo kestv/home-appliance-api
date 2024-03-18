@@ -11,49 +11,46 @@ namespace Infrastructure.Repositories
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : BaseEntity
     {
+        protected readonly HomeApplianceContext Context;
+
+        public RepositoryBase(HomeApplianceContext context)
+        {
+            Context = context;
+        }
+
         public async Task<T> AddAsync(T entity)
         {
-            using var context = new HomeApplianceContext();
+            var record = await Context.AddAsync(entity);
 
-            var record = await context.AddAsync(entity);
-
-            await context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             return record.Entity;
         }
 
         public async Task<bool> DeleteAsync(T entity)
         {
-            using var context = new HomeApplianceContext();
+            var record = Context.Remove(entity);
 
-            var record = context.Remove(entity);
-
-            await context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             return record != null;
         }
 
         public async Task<T?> GetAsync(Expression<Func<T, bool>> expression)
         {
-            using var context = new HomeApplianceContext();
-
-            return await context.Set<T>().FirstOrDefaultAsync(expression);
+            return await Context.Set<T>().FirstOrDefaultAsync(expression);
         }
 
         public async Task<List<T>> ListAsync(Expression<Func<T, bool>> expression)
         {
-            using var context = new HomeApplianceContext();
-
-            return await context.Set<T>().Where(expression).ToListAsync();
+            return await Context.Set<T>().Where(expression).ToListAsync();
         }
 
         public async Task<T> UpdateAsync(T entity)
-        {
-            using var context = new HomeApplianceContext();
-            
-            var record = context.Update(entity);
+        {            
+            var record = Context.Update(entity);
 
-            await context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
 
             return record.Entity;
         }

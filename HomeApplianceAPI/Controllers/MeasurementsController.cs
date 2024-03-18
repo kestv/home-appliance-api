@@ -1,6 +1,5 @@
-using Domain.Models;
-using Domain.Temperature;
-using HomeApplianceAPI.DTOs;
+using Application.DTOs;
+using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeApplianceAPI.Controllers
@@ -9,32 +8,32 @@ namespace HomeApplianceAPI.Controllers
     [Route("[controller]")]
     public class MeasurementsController : ControllerBase
     {
-        private readonly ILogger<MeasurementsController> _logger;
-        private readonly ITemperatureMeasurementRepository _temperatureMeasurementRepository;
+        private readonly IMeasurementService _measurementService;
 
-        public MeasurementsController(ILogger<MeasurementsController> logger, ITemperatureMeasurementRepository temperatureMeasurementRepository)
+        public MeasurementsController(IMeasurementService measurementService)
         {
-            _logger = logger;
-            _temperatureMeasurementRepository = temperatureMeasurementRepository;
+            _measurementService = measurementService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMeasurements(int offsetDays)
+        public async Task<IActionResult> GetDailyMeasurements(int offsetDays)
         {
-            var result = await _temperatureMeasurementRepository.ListAsync(x => x.MeasuredOn >= DateTime.Now.AddDays(-offsetDays));
+            var result = await _measurementService.GetDailyMeasurementsAsync(offsetDays);
+            return Ok(result);
+        }
+
+        [HttpGet("last")]
+        public async Task<IActionResult> GetLastMeasurement()
+        {
+            var result = await _measurementService.GetLastMeasurementAsync();
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddMeasurement(TemperatureMeasurementDto dto)
+        public async Task<IActionResult> AddMeasurement(CreateTemperatureMeasurementDto dto)
         {
-            DateTime dateTime = new(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            dateTime = dateTime.AddSeconds(dto.MeasuredOnUnixTime).ToLocalTime();
-
-            TemperatureMeasurement measurement = new() { Humidity = dto.Humidity, Temperature = dto.Temperature, MeasuredOn = dateTime };
-
-            var added = await _temperatureMeasurementRepository.AddAsync(measurement);
-            return Ok(added);
+            await _measurementService.CreateMeasurementAsync(dto);
+            return Ok();
         }
     }
 }

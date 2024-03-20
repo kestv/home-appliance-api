@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tests
+namespace Tests.RepositoriesTests
 {
     public class BaseRepositoryTests : TestBase
     {

@@ -1,4 +1,6 @@
-﻿using Infrastructure;
+﻿using Application.Mapper;
+using AutoMapper;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -23,6 +25,18 @@ namespace Tests
                 _context.Database.EnsureCreated();
                 return _context;
             } 
+        }
+
+        protected static IMapper Mapper
+        {
+            get
+            {
+                var mapperConfig = new MapperConfiguration(mc =>
+                {
+                    mc.AddProfile(new MappingProfile());
+                });
+                return mapperConfig.CreateMapper();
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ using Domain.Exceptions;
 using Domain.Temperature;
 using Infrastructure.Repositories;
 
-namespace Tests
+namespace Tests.RepositoriesTests
 {
     public class MeasurementRepositoryTests : TestBase
     {
@@ -18,7 +18,7 @@ namespace Tests
         {
             await Assert.ThrowsAsync<MeasurementNotFoundException>(() => measurementRepository.GetLastMeasurementAsync());
         }
-    
+
         [Fact]
         public async Task GetLastMeasuremet_MeasurementAdded_ReturnsMeasurement()
         {
@@ -43,6 +43,6 @@ namespace Tests
             Assert.Equal(id, measurement.Id);
         }
 
-        
+
     }
 }
